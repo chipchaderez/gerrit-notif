@@ -1,0 +1,18 @@
+{
+  "author": "Martin Murphy",
+  "name": "fh-reportingclienttest",
+  "description": "FH Reporting Client Tester",
+  "version": "0.1.0",
+  "repository": {
+    "url": ""
+  },
+  "main": "bin/fh-reptest.js",
+  "engines": {
+    "node": "~0.4.12"
+  },
+  "dependencies": {
+    "async": "0.1.16",
+    "fh-reportingclient": "http://denzil.henora.net:8080/job/fh-reportingclient_release/4/artifact/dist/fh-reportingclient-0.1.0-4.tar.gz"
+  },
+  "devDependencies": {}
+}

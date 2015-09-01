@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>gerrit notifier</title>
+
+    <link rel="stylesheet" href="css/app.css">
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header-footer-bg">
+    <div class="center">
+        <h3>GerritNotif
+            <small>A gerrit notification app</small>
+        </h3>
+    </div>
+</header>
+
+<div id="count" class="">
+    <div id="formWrapper">
+        <p id="description">This application invokes notifications when the owner username's patches were changed.</p>
+
+        <div class="input-div">
+            <label class="label">Server:</label>
+            <input id="gerrit_server" type="text" class="input-text" value="gerrit-chipchaderez.rhcloud.com" placeholder="Enter Gerrit Server/>
+          </div>
+
+          <div class="input-div">
+            <label class="label">Username:</label>
+            <input id="gerrit_username" type="text" class="input-text" value="chipchaderez" placeholder="Enter Your Username"/>
+        </div>
+
+        <div class="input-div">
+            <label class="label">Notifications:</label><br>
+            <div class="checkbox-group">
+                <input type="checkbox" name="notifications[]" value="score" checked/>Score<br>
+                <input type="checkbox" name="notifications[]" value="status"/>Status<br>
+                <input type="checkbox" name="notifications[]" value="updated"/>Updated<br>
+            </div>
+        </div>
+
+        <div class="input-div">
+            <label class="label">Interval:</label>&nbsp;
+            <select id="interval">
+                <option value="5">5 sec</option>
+                <option value="10">10 sec</option>
+                <option value="30">30 sec</option>
+                <option value="60">1 min</option>
+            </select>
+        </div>
+
+        <br>
+
+        <br>
+
+        <button id="start" type="button" value="start" class="start-button">Start Notification Service</button>
+        <div id="cloudResponse" class="cloudResponse"></div>
+    </div>
+</div>
+
+<footer class="header-footer-bg">
+    <div>
+        <small class="right">
+            <!-- v.&nbsp;{{ version }} -->
+        </small>
+    </div>
+</footer>
+
+<script src="lib/jquery-2.1.4.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/bootbox.min.js"></script>
+<script src="feedhenry.js"></script>
+<script src="gerritNotification.js"></script>
+</body>
+</html>
