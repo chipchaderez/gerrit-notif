@@ -1,2 +1,2 @@
 # gerrit-notif
-gerrit notif is an open source project which support gerrit notifications of changed score, status and any other update to your mobile device. The project was written with the Red Hat Mobile application platform also known as feedhenry
+gerrit-notif is an open source project which creates notifications to your mobile device for gerrit events of changed score, status and any other updates. This project was written with the Red Hat Mobile Application Platform (aka FeedHenry).
