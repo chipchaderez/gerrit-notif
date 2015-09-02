@@ -74,6 +74,7 @@ function getChangesToNotify(changes, newChanges, notifications) {
           }
           if (notifications.indexOf("updated") != -1) {
             console.log("notification enabled for updated patch");
+            idToUpdatedMap[change.id] = change["updated"];
           }
           if (notifications.indexOf("status") != -1) {
             console.log("notification enabled for status");
@@ -84,10 +85,12 @@ function getChangesToNotify(changes, newChanges, notifications) {
       newChanges.forEach(function(newChange) {
           var changeScore = idToScoreMap[newChange.id];
           var newChangeScore = getScoreByChange(newChange);
+          var showUpdated = true;
           if (changeScore != null && changeScore != newChangeScore) {
             console.log("new score has been updated");
             newChange.score = newChangeScore;
             changesToNotify.push(newChange);
+            showUpdated = false;
           }
           var changedStatus = idToStatusMap[newChange.id];
           var newChangeStatus = newChange["status"];
@@ -95,12 +98,13 @@ function getChangesToNotify(changes, newChanges, notifications) {
             console.log("Status " + changedStatus + " has been updated to " + newChangeStatus);
             newChange.newStatus = newChangeStatus;
             changesToNotify.push(newChange);
+            showUpdated = false;
           }
           var changedUpdated = idToUpdatedMap[newChange.id];
           var newChangeUpdated = newChange["updated"];
-          if (changedUpdated != null && changedUpdated != newChangeUpdated) {
+          if (showUpdated && changedUpdated != null && changedUpdated != newChangeUpdated) {
             console.log("Patch has been updated at " + newChangeUpdated);
-            newChange.newUpdated = newChangeUpdated;
+            newChange.newUpdated = newChangeUpdated.slice(0,19);
             changesToNotify.push(newChange);
           }
       });
@@ -111,6 +115,7 @@ function getChangesToNotify(changes, newChanges, notifications) {
 
 function getScoreByChange(change) {
     var codeReview = change["labels"]["Code-Review"];
+    console.log("Maor : " + codeReview);
     if (codeReview["approved"])
         return 2;
     else if (codeReview["rejected"])

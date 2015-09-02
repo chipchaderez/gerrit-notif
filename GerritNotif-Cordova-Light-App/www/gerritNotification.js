@@ -80,7 +80,6 @@ startButton.onclick = function () {
                 },
 
                 function (res) {
-                    debugger;
                     if (res.msg != 'success') {
                         bootbox.dialog({
                             title: "No connection to gerrit server",
@@ -100,17 +99,17 @@ startButton.onclick = function () {
                       if (hasScore) {
                         var newScore = res.changes[i].score;
                         newScore = newScore > 0 ? "+" + newScore : newScore;
-                        message += "Change got a new score : " + newScore + "<br>";
+                        message += "Change got a new score : " + newScore;
                       }
                       if (hasStatus) {
                         var newStatus = res.changes[i].newStatus;
-                        message += "Change got a new status : " + newStatus + "<br>";
+                        message += "Change got a new status : " + newStatus;
                       }
                       if (!hasStatus && !hasScore && (res.changes[i].newUpdated != undefined)) {
-                        message += "Change has been updated at " + res.changes[i].updated;
+                        message += "Change has been updated at " + res.changes[i].newUpdated;
                       }
                       var url = "http://" + gerrit_server + "/" + res.changes[i]._number;
-                      message += "Subject : " + res.changes[i].subject + "<br>";
+                      message += "<br>Subject : " + res.changes[i].subject + "<br>";
                       message += '<a href="' + url + '">' + url + '</a><br>'
                     }
 
@@ -121,7 +120,7 @@ startButton.onclick = function () {
                 },
                 function (code, errorprops, params) {
                     //alert('An error occured: ' + code + ' : ' + errorprops);
-                }	
+                }
             );
         }, interval * 1000);
     }
